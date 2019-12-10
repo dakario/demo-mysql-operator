@@ -1,0 +1,9 @@
+apiVersion: mysql.oracle.com/v1alpha1
+kind: Restore
+metadata:
+  name: restore1
+spec:
+  cluster:
+    name: mysql-wordpress
+  backup:
+    name: mysql-backup-schedule-20191210134356

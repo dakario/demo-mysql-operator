@@ -1,0 +1,20 @@
+apiVersion: mysql.oracle.com/v1alpha1
+kind: BackupSchedule
+metadata:
+  name: mysql-backup-schedule
+spec:
+  schedule: '*/1 * * * *'
+  backupTemplate:
+    executor:
+      mysqldump:
+        databases:
+          - name: wordpress
+    storageProvider:
+      s3:
+        endpoint: s3.eu-west-1.amazonaws.com
+        region: eu-west-1
+        bucket: mysql-wordpress-backup
+        credentialsSecret:
+          name: s3-credentials
+    cluster:
+      name: mysql-wordpress
